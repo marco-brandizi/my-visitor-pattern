@@ -22,8 +22,6 @@ import info.marcobrandizi.examples.visitor.model.QueenBedroom;
  * @author brandizi
  * <dl><dt>Date:</dt><dd>19 Feb 2023</dd></dl>
  *
- * TODO: proper JUnit assertions.
- * 
  */
 public class VisitorsTest
 {
