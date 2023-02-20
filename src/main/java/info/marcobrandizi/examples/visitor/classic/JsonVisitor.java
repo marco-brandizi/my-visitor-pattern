@@ -12,7 +12,6 @@ import info.marcobrandizi.examples.visitor.model.KingBedroom;
 import info.marcobrandizi.examples.visitor.model.Room;
 
 /**
- * TODO: comment me!
  *
  * @author brandizi
  * <dl><dt>Date:</dt><dd>19 Feb 2023</dd></dl>

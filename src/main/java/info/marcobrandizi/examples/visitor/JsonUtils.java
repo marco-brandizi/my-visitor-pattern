@@ -5,8 +5,7 @@ import java.util.List;
 import info.marcobrandizi.examples.visitor.model.CastlePart;
 
 /**
- * TODO: comment me!
- *
+ * 
  * @author brandizi
  * <dl><dt>Date:</dt><dd>20 Feb 2023</dd></dl>
  *

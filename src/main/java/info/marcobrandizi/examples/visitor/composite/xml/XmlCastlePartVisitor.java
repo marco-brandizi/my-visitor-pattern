@@ -12,8 +12,8 @@ import info.marcobrandizi.examples.visitor.model.CastlePart;
  */
 public abstract class XmlCastlePartVisitor<CP extends CastlePart> extends ComponentVisitor<CP>
 {
-	protected XmlCastlePartVisitor ( Class<CP> domainClass )
+	protected XmlCastlePartVisitor ( Class<CP> castlePartClass )
 	{
-		super ( domainClass );
+		super ( castlePartClass );
 	}
 }

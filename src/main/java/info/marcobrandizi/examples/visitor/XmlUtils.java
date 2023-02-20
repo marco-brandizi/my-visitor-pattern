@@ -5,14 +5,15 @@ import java.util.List;
 import info.marcobrandizi.examples.visitor.model.CastlePart;
 
 /**
- * TODO: comment me!
- *
  * @author brandizi
  * <dl><dt>Date:</dt><dd>20 Feb 2023</dd></dl>
  *
  */
 public class XmlUtils
 {
+	/**
+	 * Chains {@link #renderXmlAttributes(List)} and {@link #renderXmlTag(String, String)} 
+	 */
 	public static String renderXmlTag ( String xmlTag, List<Object> fields ) { 
 		return renderXmlTag ( xmlTag, renderXmlAttributes ( fields ) ); 
 	}
@@ -28,7 +29,8 @@ public class XmlUtils
 	}
 
 	/**
-	 * Renders the castle parts as list of XML attributes, to be wrapped on an XML tag.
+	 * Renders the list of key, value,... as XML attribute declarations, to be wrapped 
+	 * on an XML tag.
 	 */
 	public static String renderXmlAttributes ( List<Object> fields )
 	{
@@ -45,7 +47,8 @@ public class XmlUtils
 	}
 	
 	/**
-	 * Renders the fields of a castle part, in the format accepted by {@link #renderXmlAttributes(List)}.
+	 * Renders the fields of a castle part, in the format accepted by 
+	 * {@link #renderXmlAttributes(List)}.
 	 */
 	public static List<Object> getFields ( CastlePart part )
 	{

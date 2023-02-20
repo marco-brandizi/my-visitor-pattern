@@ -11,7 +11,8 @@ import info.marcobrandizi.examples.visitor.model.KingBedroom;
 import info.marcobrandizi.examples.visitor.model.Room;
 
 /**
- * TODO: comment me!
+ * The dispatcher approach: the visit dispatch is no longer in the domain model, no accept()
+ * pollution of it, but it's decided here, based on the component to be visited.
  *
  * @author brandizi
  * <dl><dt>Date:</dt><dd>20 Feb 2023</dd></dl>
@@ -23,10 +24,11 @@ public class VisitorDispatcher
 	
 	public String dispatchVisit ( CastlePart part, Visitor visitor )
 	{
-		log.info ( "Calling dispatchVisit() for {}", part.getClass ().getSimpleName () );
+		log.debug ( "Calling dispatchVisit() for {}", part.getClass ().getSimpleName () );
 		
 		if ( part instanceof Castle ) 
 			return visitor.visitCastle ( (Castle) part, room -> this.dispatchVisit ( room, visitor ) );
+		// You need to go from the most specific to the most generic 
 		if ( part instanceof KingBedroom ) return visitor.visitKingBedroom ( (KingBedroom) part );
 		if ( part instanceof Bedroom ) return visitor.visitBedroom ( (Bedroom) part );
 		if ( part instanceof Room ) return visitor.visitRoom ( (Room) part );

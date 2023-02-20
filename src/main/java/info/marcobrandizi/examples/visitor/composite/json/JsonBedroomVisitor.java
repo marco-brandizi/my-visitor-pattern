@@ -21,9 +21,9 @@ public class JsonBedroomVisitor<BR extends Bedroom> extends JsonRoomVisitor<BR>
 		super ( (Class<BR>) Bedroom.class );
 	}
 	
-	public JsonBedroomVisitor ( Class<BR> domainClass )
+	public JsonBedroomVisitor ( Class<BR> bedroomClass )
 	{
-		super ( domainClass );
+		super ( bedroomClass );
 	}
 
 

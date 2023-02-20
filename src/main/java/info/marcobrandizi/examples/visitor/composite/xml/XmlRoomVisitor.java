@@ -18,9 +18,9 @@ public class XmlRoomVisitor<R extends Room> extends XmlCastlePartVisitor<R>
 		this ( (Class<R>) Room.class );
 	}
 	
-	public XmlRoomVisitor ( Class<R> domainClass )
+	public XmlRoomVisitor ( Class<R> roomClass )
 	{
-		super ( domainClass );
+		super ( roomClass );
 	}
 
 	@Override

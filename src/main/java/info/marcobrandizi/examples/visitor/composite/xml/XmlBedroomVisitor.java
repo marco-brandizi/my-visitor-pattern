@@ -21,9 +21,9 @@ public class XmlBedroomVisitor<BR extends Bedroom> extends XmlRoomVisitor<BR>
 		super ( (Class<BR>) Bedroom.class );
 	}
 	
-	public XmlBedroomVisitor ( Class<BR> domainClass )
+	public XmlBedroomVisitor ( Class<BR> bedroomClass )
 	{
-		super ( domainClass );
+		super ( bedroomClass );
 	}
 
 

@@ -18,9 +18,9 @@ public class JsonRoomVisitor<R extends Room> extends JsonCastlePartVisitor<R>
 		this ( (Class<R>) Room.class );
 	}
 	
-	public JsonRoomVisitor ( Class<R> domainClass )
+	public JsonRoomVisitor ( Class<R> roomClass )
 	{
-		super ( domainClass );
+		super ( roomClass );
 	}
 
 	@Override
