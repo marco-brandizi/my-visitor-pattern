@@ -1,6 +1,6 @@
 package info.marcobrandizi.examples.visitor;
 
-import java.util.stream.Stream;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,21 +34,21 @@ public class VisitorsTest
 		new Ballroom (),
 		new KingBedroom (),
 		new QueenBedroom (),
-		new Bedroom ( "guest bedroom", 50, 10, "orange" )
+		new Bedroom ( "Guest Bedroom", 50, 10, "orange" )
 	);
-	
+		
 	@Test
 	public void testJson ()
 	{
 		String json = castle.accept ( new JsonVisitor () );
-		log.info ( "JSON Visitor, Classical Approach:\n{}", json );
+		verifyJson ( json, "JSON Visitor, Classical Approach:\n{}" );
 	}
 	
 	@Test
 	public void testXml ()
 	{
 		String xml = castle.accept ( new XmlVisitor () );
-		log.info ( "XML Visitor, Classical Approach:\n{}", xml );
+		verifyXml ( xml, "XML Visitor, Classical Approach:\n{}" );
 	}
 
 	@Test
@@ -56,15 +56,15 @@ public class VisitorsTest
 	{
 		VisitorDispatcher dispatcher = new VisitorDispatcher ();
 		String json = dispatcher.dispatchVisit ( castle, new JsonVisitor () );
-		log.info ( "JSON Visitor, Dispatcher Approach:\n{}", json );
+		verifyJson ( json, "JSON Visitor, Dispatcher Approach:\n{}" );
 	}
 
 	@Test
 	public void testDispatcherXml ()
 	{
 		VisitorDispatcher dispatcher = new VisitorDispatcher ();
-		String json = dispatcher.dispatchVisit ( castle, new XmlVisitor () );
-		log.info ( "XML Visitor, Dispatcher Approach:\n{}", json );
+		String xml = dispatcher.dispatchVisit ( castle, new XmlVisitor () );
+		verifyXml ( xml, "XML Visitor, Dispatcher Approach:\n{}" );
 	}
 	
 
@@ -72,13 +72,57 @@ public class VisitorsTest
 	public void testCompositeDispatcherJson ()
 	{
 		String json = JsonExporter.jsonExport ( castle );
-		log.info ( "JSON Visitor, Composite Dispatcher Approach:\n{}", json );
+		verifyJson ( json, "JSON Visitor, Composite Dispatcher Approach:\n{}" );
 	}
 
 	@Test
 	public void testCompositeDispatcherXml ()
 	{
 		String xml = XmlExporter.xmlExport ( castle );
-		log.info ( "XML Visitor, Composite Dispatcher Approach:\n{}", xml );
+		verifyXml ( xml, "XML Visitor, Composite Dispatcher Approach:\n{}" );
+	}
+	
+	
+	private void verifyJson ( String json, String logMsg )
+	{
+		log.debug ( logMsg, json );
+		
+		assertTrue ( json.startsWith ( "{ " ), "Bad document begin!" );
+		assertTrue ( json.endsWith ( "] }" ), "Bad document end!" );
+		
+		assertTrue ( json.startsWith ( 
+			"{ \"name\": \"The Fairytale Castle\", \"size-sq-m\": 850, \"artworks\": 275, \"rooms\": [" ),
+			"Bad castle data!"
+		);
+		assertTrue ( json.contains ( 
+			"{ \"name\": \":The Royal King Bedroom:\", \"size-sq-m\": 100, \"artworks\": 30, \"bed-color\": \"red\" },\n" ),
+			"Bad King bedroom!"
+		);
+		assertTrue ( json.contains ( "The Royal Queen Bedroom" ), "No queen bedroom!" );
+		assertTrue ( json.contains ( "Guest Bedroom" ), "No guest bedroom!" );
+		assertTrue ( json.contains ( "Ballroom" ), "No ballroom!" );
+		assertTrue ( json.contains ( "Luxury Hall" ), "No Hall!" );
+	}		
+	
+	private void verifyXml ( String xml, String logMsg )
+	{
+		log.debug ( logMsg, xml );
+		
+		assertTrue ( xml.startsWith ( "<Castle " ), "Bad document begin!" );
+		assertTrue ( xml.endsWith ( "\n  </Rooms>\n</Castle>\n" ), "Bad document end!" );
+		
+		assertTrue ( xml.startsWith ( 
+			"<Castle name = \"The Fairytale Castle\" size-sq-m = \"850\" artworks = \"275\">\n  <Rooms>\n    <Hall" ),
+			"Bad castle node!"
+		);
+		assertTrue ( xml.contains ( 
+			"    <Hall name = \"The Luxury Hall\" size-sq-m = \"200\" artworks = \"50\" />\n" ),
+			"Bad Hall!"
+		);
+		assertTrue ( xml.contains ( "<KingBedroom name = \":The Royal King Bedroom:\"" ), "No King bedroom!" );
+		assertTrue ( xml.contains ( "<QueenBedroom name = \"The Royal Queen Bedroom\"" ), "No queen bedroom!" );
+		assertTrue ( xml.contains ( "<Bedroom name = \"Guest Bedroom\"" ), "No guest bedroom!" );
+		assertTrue ( xml.contains ( "Ballroom" ), "No ballroom!" );
+		assertTrue ( xml.contains ( "Luxury Hall" ), "No Hall!" );
 	}
 }
