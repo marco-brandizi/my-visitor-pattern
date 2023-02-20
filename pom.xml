@@ -9,9 +9,8 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <name>my-visitor-pattern</name>
-  <description>A simple my-visitor-pattern.</description>
-  <!-- TODO -->
-  <url></url>
+  <description>A sample project, showing how the visitor design pattern works and possible alternatives.</description>
+  <url>https://github.com/marco-brandizi/my-visitor-pattern</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
