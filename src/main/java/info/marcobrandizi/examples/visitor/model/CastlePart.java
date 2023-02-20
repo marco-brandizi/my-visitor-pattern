@@ -54,7 +54,7 @@ public abstract class CastlePart implements Visitable
 	
 	protected void logAccept ()
 	{
-		log.info ( "Calling accept() for {}", this.getClass ().getName () );
+		log.info ( "Calling accept() for {}", this.getClass ().getSimpleName () );
 	}
 	
 }

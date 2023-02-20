@@ -23,9 +23,10 @@ public class VisitorDispatcher
 	
 	public String dispatchVisit ( CastlePart part, Visitor visitor )
 	{
-		log.info ( "Calling dispatchVisit() for {}", part.getClass ().getName () );
+		log.info ( "Calling dispatchVisit() for {}", part.getClass ().getSimpleName () );
 		
-		if ( part instanceof Castle ) return visitor.visitCastle ( (Castle) part );
+		if ( part instanceof Castle ) 
+			return visitor.visitCastle ( (Castle) part, room -> this.dispatchVisit ( room, visitor ) );
 		if ( part instanceof KingBedroom ) return visitor.visitKingBedroom ( (KingBedroom) part );
 		if ( part instanceof Bedroom ) return visitor.visitBedroom ( (Bedroom) part );
 		if ( part instanceof Room ) return visitor.visitRoom ( (Room) part );

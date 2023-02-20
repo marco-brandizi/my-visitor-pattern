@@ -1,7 +1,5 @@
 package info.marcobrandizi.examples.visitor.classic;
 
-import info.marcobrandizi.examples.visitor.model.CastlePart;
-
 /**
  * TODO: comment me!
  *

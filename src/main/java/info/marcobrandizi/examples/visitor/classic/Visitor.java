@@ -1,7 +1,6 @@
 package info.marcobrandizi.examples.visitor.classic;
 
-import java.util.List;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 import info.marcobrandizi.examples.visitor.model.Bedroom;
 import info.marcobrandizi.examples.visitor.model.Castle;
@@ -23,8 +22,12 @@ public abstract class Visitor
 	 * 
 	 * This is due to the fact that the visitor knows how to combine (eg, nest) the different parts.
 	 * 
+	 * We still detach the {@link Visitor} from the {@link Visitable} using the lambda
+	 * trick (ie, the visitor's acceptance is still managed by the caller, by passing the
+	 * roomVisitor parameter).
+	 * 
 	 */
-	public abstract String visitCastle ( Castle castle );
+	public abstract String visitCastle ( Castle castle, Function<Room, String> roomVisitor );
 	
 	public abstract String visitRoom ( Room room );
 	

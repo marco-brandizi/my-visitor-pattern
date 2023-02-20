@@ -47,6 +47,6 @@ public class Castle extends CastlePart
 	public String accept ( Visitor visitor )
 	{
 		logAccept ();
-		return visitor.visitCastle ( this );
+		return visitor.visitCastle ( this, room -> room.accept ( visitor ) );
 	}
 }
